@@ -1,6 +1,6 @@
 # Strings
 
-The idea of this library is to fulfill only **one** gap - missing JDK String manipulations and checks. Yes, I could use 
+The idea of this library is to fulfill **only one gap** - missing JDK String manipulations and checks. Yes, I could use 
 `commons-lang3`, but I got tired of neverending CVEs mainly caused by unrelated to String manipulations. So this 
 library starts small, mainly with operations which I used in the last 15 years of enterprise development (very few)
 
