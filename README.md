@@ -52,6 +52,7 @@ public class Example {
         Strings.capitalize("hello");  // "Hello"
         Strings.capitalize("Hello");  // "Hello"
         Strings.capitalize(null);     // null
+	    Strings.capitalize("éhello");  // Éhello
     }
 }
 ```
@@ -72,7 +73,7 @@ Change the version by adding a `-SNAPSHOT` suffix in the [pom.xml](pom.xml) file
  mvnd -B clean install
 ```
 
-### Pointing to a local version
+### Pointing to a `SNAPSHOT` version
 ```xml
 <dependencies>
     <dependency>
