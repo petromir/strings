@@ -73,6 +73,20 @@ Change the version by adding a `-SNAPSHOT` suffix in the [pom.xml](pom.xml) file
  mvnd -B clean install
 ```
 
+### Releasing
+The release process (versioning, changelog, GitHub release, Maven Central) is
+documented in [docs/release-process.md](docs/release-process.md).
+
+The `Release` workflow starts automatically after the `Build` workflow succeeds
+on `master`. To re-publish an existing tag (for example after a transient Maven
+Central failure), run the `Release` workflow manually and set the `tag` input to
+the tag to publish (for example `v0.1.0`). Leave the input empty to run
+release-please.
+
+### TODO
+- Build the release artifacts once in the `Build` workflow and promote those
+  exact artifacts during the release, instead of rebuilding from source.
+
 ### Pointing to a `SNAPSHOT` version
 ```xml
 <dependencies>

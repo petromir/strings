@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "java",
+  "bump-minor-pre-major": true,
+  "release-as": "1.0.0",
+  "packages": {
+    ".": {
+      "skip-snapshot": true
+    }
+  }
+}

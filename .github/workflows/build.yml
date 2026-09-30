@@ -1,0 +1,56 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref. Safe because CI only reads.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Warm up the Maven cache by downloading dependencies once
+  cache-dependencies:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'liberica'
+          cache: maven
+
+      - name: Download dependencies
+        # 'dependency:go-offline' resolves plugins, provided, and test
+        # dependencies without running the build, checks, or tests.
+        run: >-
+          mvn --batch-mode --no-transfer-progress -Denforcer.skip=true -Dcheckstyle.skip=true -Dmaven.test.skip=true 
+          dependency:go-offline
+
+  build:
+    needs: [cache-dependencies]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'liberica'
+          cache: maven
+
+      - name: Build and verify
+        run: mvn --batch-mode --no-transfer-progress clean verify
