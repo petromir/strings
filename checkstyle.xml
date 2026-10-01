@@ -200,11 +200,6 @@
         <module name="JavadocMissingLeadingAsterisk"/>
         <module name="JavadocMissingWhitespaceAfterAsterisk"/>
         <module name="JavadocParagraph"/>
-        <module name="JavadocStyle">
-            <property name="checkFirstSentence" value="false"/>
-            <property name="checkEmptyJavadoc" value="true"/>
-            <property name="tokens" value="ANNOTATION_DEF,CLASS_DEF,ENUM_DEF,INTERFACE_DEF,METHOD_DEF,RECORD_DEF"/>
-        </module>
         <module name="JavadocTagContinuationIndentation">
             <property name="offset" value="2"/>
         </module>
@@ -219,7 +214,6 @@
         </module>
         <module name="SummaryJavadocCheck">
             <property name="forbiddenSummaryFragments" value="^(This method returns.*|Returns.*)"/>
-            <property name="period" value=""/>
         </module>
 
         <!-- Metrics -->
